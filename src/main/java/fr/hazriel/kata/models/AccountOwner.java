@@ -16,6 +16,13 @@ public class AccountOwner {
     @OneToMany
     private List<Account> accounts;
 
+    public AccountOwner(Long id, String firstname, String lastname, List<Account> accounts) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.accounts = accounts;
+    }
+
     public Long getId() {
         return id;
     }
