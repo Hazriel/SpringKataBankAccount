@@ -1,4 +1,4 @@
-package fr.hazriel.kata.dto;
+package fr.hazriel.kata.presentation.dto;
 
 public class CreateTransactionRequestBody {
     private Long accountId;

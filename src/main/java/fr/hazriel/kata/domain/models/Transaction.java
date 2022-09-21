@@ -1,21 +1,35 @@
-package fr.hazriel.kata.models;
+package fr.hazriel.kata.domain.models;
+
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "transactions")
 public class Transaction {
-    @Id
-    private Long id;
-    @ManyToOne
-    private Account account;
-    private Double amount;
 
-    public Transaction(Long id, Account account, Double amount) {
+    @Id
+    @GeneratedValue
+    private Long id;
+    private Double amount;
+    private LocalDateTime time;
+
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
+
+    public Transaction() {}
+
+    public Transaction(Long id, Account account, Double amount, LocalDateTime time) {
         this.id = id;
         this.account = account;
         this.amount = amount;
+        this.time = time;
     }
 
     public Long getId() {
@@ -40,6 +54,14 @@ public class Transaction {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 
 }

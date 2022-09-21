@@ -1,8 +1,8 @@
-package fr.hazriel.kata.services;
+package fr.hazriel.kata.domain.services.transaction;
 
 import java.util.List;
 
-import fr.hazriel.kata.models.Transaction;
+import fr.hazriel.kata.domain.models.Transaction;
 
 public interface TransactionService {
     public List<Transaction> getTransactionsForAccount(Long accountId);

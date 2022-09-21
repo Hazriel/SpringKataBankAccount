@@ -1,20 +1,26 @@
-package fr.hazriel.kata.models;
+package fr.hazriel.kata.domain.models;
 
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "account_owners")
 public class AccountOwner {
     @Id
+    @GeneratedValue
     private Long id;
     private String firstname;
     private String lastname;
 
-    @OneToMany
+    @OneToMany(mappedBy = "owner")
     private List<Account> accounts;
+
+    public AccountOwner() {}
 
     public AccountOwner(Long id, String firstname, String lastname, List<Account> accounts) {
         this.id = id;

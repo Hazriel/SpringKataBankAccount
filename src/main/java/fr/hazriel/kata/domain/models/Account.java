@@ -1,26 +1,36 @@
-package fr.hazriel.kata.models;
+package fr.hazriel.kata.domain.models;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "accounts")
 public class Account {
     @Id
+    @GeneratedValue
     private Long id;
     private Double money;
+
     @ManyToOne
+    @JoinColumn(name = "owner_id")
     private AccountOwner owner;
-    @OneToMany
+
+    @OneToMany(mappedBy = "account")
     private List<Transaction> transactions;
 
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
-    public Account(Long id, Double money, AccountOwner owner, List<Transaction> transactions, LocalDate createdAt) {
+    public Account() {}
+
+    public Account(Long id, Double money, AccountOwner owner, List<Transaction> transactions, LocalDateTime createdAt) {
         this.id = id;
         this.money = money;
         this.owner = owner;
@@ -60,11 +70,11 @@ public class Account {
         this.transactions = transactions;
     }
 
-    public LocalDate getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
     

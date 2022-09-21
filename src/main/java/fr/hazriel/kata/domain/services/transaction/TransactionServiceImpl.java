@@ -1,14 +1,23 @@
-package fr.hazriel.kata.services;
+package fr.hazriel.kata.domain.services.transaction;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
-import fr.hazriel.kata.models.Account;
-import fr.hazriel.kata.models.Transaction;
-import fr.hazriel.kata.repositories.AccountRepository;
-import fr.hazriel.kata.repositories.TransactionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import fr.hazriel.kata.domain.models.Account;
+import fr.hazriel.kata.domain.models.Transaction;
+import fr.hazriel.kata.persistence.repositories.AccountRepository;
+import fr.hazriel.kata.persistence.repositories.TransactionRepository;
+
+@Service
 public class TransactionServiceImpl implements TransactionService {
+
+    @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
     private TransactionRepository transactionRepository;
 
     public List<Transaction> getTransactionsForAccount(Long accountId) {
@@ -28,7 +37,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         Account account = accountRepository.findById(accountId).orElseThrow();
 
-        Transaction transaction = new Transaction(null, account, amount);
+        Transaction transaction = new Transaction(null, account, amount, LocalDateTime.now());
 
         transaction = transactionRepository.save(transaction);
 

@@ -1,4 +1,4 @@
-package fr.hazriel.kata.exceptions;
+package fr.hazriel.kata.domain.exceptions;
 
 public class NotImplementedException extends Exception {
 
