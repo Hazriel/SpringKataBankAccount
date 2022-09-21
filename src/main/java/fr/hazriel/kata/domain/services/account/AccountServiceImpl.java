@@ -8,7 +8,6 @@ import fr.hazriel.kata.persistence.repositories.AccountRepository;
 
 @Service
 public class AccountServiceImpl implements AccountService {
-    
     @Autowired
     private AccountRepository accountRepository;
 
@@ -16,5 +15,4 @@ public class AccountServiceImpl implements AccountService {
     public Account getAccountById(Long accountId) {
         return accountRepository.findById(accountId).orElseThrow();
     }
-    
 }

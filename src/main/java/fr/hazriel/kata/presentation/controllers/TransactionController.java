@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.hazriel.kata.domain.exceptions.NotImplementedException;
+import fr.hazriel.kata.domain.exceptions.TransactionNotAllowedException;
 import fr.hazriel.kata.domain.services.transaction.TransactionService;
 import fr.hazriel.kata.presentation.dto.CreateTransactionRequestBody;
 import fr.hazriel.kata.presentation.dto.PresentationMapper;
@@ -42,7 +43,7 @@ public class TransactionController {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public void createTransaction(@RequestBody CreateTransactionRequestBody body) {
+    public void createTransaction(@RequestBody CreateTransactionRequestBody body) throws TransactionNotAllowedException {
         transactionService.createTransaction(body.getAccountId(), body.getAmount());
     }
 }
